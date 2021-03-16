@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'io.quarkus' version '1.12.0.Final'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext{
+    quarkusVersion='1.12.0.Final'
+}
+
+dependencies {
+
+    implementation enforcedPlatform("io.quarkus:quarkus-universe-bom:${quarkusVersion}")
+
+    // https://mvnrepository.com/artifact/io.quarkus/quarkus-resteasy
+    implementation 'io.quarkus:quarkus-resteasy'
+
+    compile "com.ecwid.consul:consul-api:1.4.5"
+    // https://mvnrepository.com/artifact/org.microprofile-ext.config-ext/configsource-consul
+    //implementation group: 'org.microprofile-ext.config-ext', name: 'configsource-consul', version: '1.0.11'
+
+}

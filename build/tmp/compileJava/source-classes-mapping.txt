@@ -1,0 +1,6 @@
+distribuida/HolaMundo.java
+ distribuida.HolaMundo
+distribuida/RestApplication.java
+ distribuida.RestApplication
+distribuida/InicializacionCdi.java
+ distribuida.InicializacionCdi
