@@ -18,21 +18,21 @@ import java.util.UUID;
 @ApplicationScoped
 public class InicializacionCdi {
 
-    public static String ID = UUID.randomUUID().toString();
+    protected static String ID = UUID.randomUUID().toString();
 
 
 
     @Inject
     @ConfigProperty(name = "configsource.consul.host", defaultValue = "127.0.0.1")
-    public String consulHost;
+    protected String consulHost;
 
     @Inject
     @ConfigProperty(name = "quarkus.http.port", defaultValue = "8080")
-    public int appPort;
+    protected int appPort;
 
     @Inject
     @ConfigProperty(name = "app.name", defaultValue = "mp-registro")
-    public String appName;
+    protected String appName;
 
     public void init(@Observes @Initialized(ApplicationScoped.class)Object obt) throws UnknownHostException {
         System.out.println("**********************init");
@@ -44,6 +44,16 @@ public class InicializacionCdi {
         newService.setName(appName);
         newService.setPort(appPort);
         newService.setAddress(InetAddress.getLocalHost().getHostAddress());
+        //client.agentServiceRegister(newService);
+
+
+        NewService.Check check = new NewService.Check();
+        check.setMethod("GET");
+        check.setHttp("http://127.0.0.1:" + appPort + "/q/health/live");
+        check.setInterval("10s");
+        check.setDeregisterCriticalServiceAfter("20s");
+
+        newService.setCheck(check);
         client.agentServiceRegister(newService);
 
     }

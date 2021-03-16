@@ -25,4 +25,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.microprofile-ext.config-ext/configsource-consul
     //implementation group: 'org.microprofile-ext.config-ext', name: 'configsource-consul', version: '1.0.11'
 
+
+    // https://mvnrepository.com/artifact/io.quarkus/quarkus-smallrye-health
+    implementation group: 'io.quarkus', name: 'quarkus-smallrye-health', version: '1.12.2.Final'
+
+
 }
